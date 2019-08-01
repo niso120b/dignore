@@ -155,7 +155,6 @@ func createDockerignore(files []string) error {
 				return err
 			}
 		} else {
-			fmt.Println("Exists")
 			exists = true
 		}
 	}
@@ -170,17 +169,13 @@ func createDockerignore(files []string) error {
 		fmt.Fprintln(file, "*")
 		fmt.Fprintln(file, ".git")
 	} else {
-		fmt.Println("Open File")
 		file, err = os.OpenFile(Result, os.O_APPEND|os.O_WRONLY, 0600)
 		if err != nil {
 			return err
 		}
 	}
 
-	fmt.Println("Files")
-	fmt.Println(files)
 	for _, item := range files {
-		fmt.Println(item)
 		dir, err := isDirectory(item)
 		if err != nil {
 			return err
