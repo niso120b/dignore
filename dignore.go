@@ -130,6 +130,10 @@ func isDirectory(path string) (bool, error) {
 		path = fmt.Sprintf("%s/%s", Context, path)
 	}
 
+	if strings.Contains(path, "*") {
+		return false, nil
+	}
+
 	file, err := os.Stat(path)
 	if err != nil {
 		return false, errors.Wrap(err, "File or directory don't exists")
